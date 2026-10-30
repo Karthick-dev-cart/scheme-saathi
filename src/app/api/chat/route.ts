@@ -9,7 +9,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "question is required" }, { status: 400 });
   }
 
-  const contextChunks = await hybridSearch(question, 5);
+  // Wider window than the English-only baseline (5) because the multilingual embedding
+  // model's cross-lingual ranking is meaningfully weaker for Tamil — see README for the
+  // measured gap. The extra candidates cost little at this corpus size (31 chunks) and give
+  // the generation step a better chance of still seeing the right chunk.
+  const contextChunks = await hybridSearch(question, 8);
 
   try {
     const answer = await generateAnswer(question, contextChunks);

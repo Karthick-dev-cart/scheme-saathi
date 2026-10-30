@@ -43,10 +43,13 @@ const STOPWORDS = new Set([
   "this", "that", "with", "as", "if", "am", "was", "were",
 ]);
 
+// Keeps the Tamil Unicode block (U+0B80–U+0BFF) alongside Latin/digits so Tamil queries don't
+// get stripped to nothing — the corpus itself is English-only today, so Tamil keyword overlap
+// will score 0 and retrieval falls back to the multilingual embedding score, which is correct.
 function tokenize(text: string): string[] {
   return text
     .toLowerCase()
-    .replace(/[^a-z0-9₹\s]/g, " ")
+    .replace(/[^a-z0-9₹஀-௿\s]/g, " ")
     .split(/\s+/)
     .filter((t) => t.length > 1 && !STOPWORDS.has(t));
 }

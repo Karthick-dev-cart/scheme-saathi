@@ -32,6 +32,7 @@ const SUGGESTIONS = [
   "I'm an auto driver in Chennai, what pension can I get after 60?",
   "How much is marriage assistance for construction workers?",
   "What documents do I need to register as an unorganised worker?",
+  "என் கணவர் விபத்தில் இறந்துவிட்டார், எவ்வளவு உதவி பெற முடியும்?",
 ];
 
 export default function ChatPanel() {

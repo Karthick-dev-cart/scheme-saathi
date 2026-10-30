@@ -1,6 +1,6 @@
 import { pipeline, type FeatureExtractionPipeline } from "@huggingface/transformers";
 
-const MODEL_ID = "Xenova/all-MiniLM-L6-v2";
+const MODEL_ID = "Xenova/paraphrase-multilingual-MiniLM-L12-v2";
 
 let extractorPromise: Promise<FeatureExtractionPipeline> | null = null;
 

@@ -34,7 +34,10 @@ making something up.
 - If a benefit change is described in the context as "proposed", "requested", or "not yet \
 enacted", make clear to the user that it is not yet confirmed — do not state it as current policy.
 - Keep answers concise and in plain language — the user may not be familiar with government \
-terminology.`;
+terminology.
+- Respond in the same language the user asked in. If they write in Tamil, answer in Tamil \
+(you may keep proper nouns like board names and source titles in English where there is no \
+natural Tamil equivalent). If they mix Tamil and English, mirror that mix.`;
 
 export interface GeneratedAnswer {
   text: string;

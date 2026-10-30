@@ -17,6 +17,10 @@ marked as board-specific below.
 
 ## Accident relief
 
+*விபத்து மரணம் (accidental death), விபத்து இழப்பீடு (accident compensation), கணவர்/மனைவி விபத்தில்
+இறந்தால் (if spouse dies in an accident), ஊனம் (disability) — this section covers accident
+death, disability, and compensation amounts.*
+
 | Benefit | Amount |
 |---|---|
 | Accidental death, anywhere | ₹1,00,000 |
@@ -25,12 +29,17 @@ marked as board-specific below.
 
 ## Death and funeral
 
+*இயற்கை மரணம் (natural death), இறுதிச் சடங்கு உதவி (funeral assistance) — natural (non-accident)
+death and funeral expense amounts.*
+
 | Benefit | Amount |
 |---|---|
 | Natural death assistance | ₹20,000 |
 | Funeral expenses assistance | ₹5,000 |
 
 ## Marriage assistance
+
+*திருமண உதவி (marriage assistance) — amount for male and female workers.*
 
 | For | Amount |
 |---|---|
@@ -39,12 +48,16 @@ marked as board-specific below.
 
 ## Maternity assistance (miscarriage / medical termination of pregnancy)
 
+*மகப்பேறு உதவி, கருச்சிதைவு உதவி (maternity / miscarriage assistance).*
+
 | Case | Amount |
 |---|---|
 | Miscarriage | ₹6,000 |
 | Medical termination of pregnancy | ₹3,000 |
 
 ## Pension
+
+*ஓய்வூதியம் (monthly pension), குடும்ப ஓய்வூதியம் (family pension).*
 
 | Benefit | Amount |
 |---|---|

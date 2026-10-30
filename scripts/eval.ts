@@ -8,17 +8,17 @@ interface TestCase {
   notes?: string;
 }
 
-const K_VALUES = [1, 3, 5];
+const K_VALUES = [1, 3, 5, 8];
 
 async function main() {
   const testsetPath = path.join(process.cwd(), "eval", "testset.json");
   const testset: TestCase[] = JSON.parse(readFileSync(testsetPath, "utf-8"));
 
-  const hitsAtK: Record<number, number> = { 1: 0, 3: 0, 5: 0 };
+  const hitsAtK: Record<number, number> = { 1: 0, 3: 0, 5: 0, 8: 0 };
   const failures: { query: string; expected: string[]; got: string[] }[] = [];
 
   for (const tc of testset) {
-    const results = await hybridSearch(tc.query, 5);
+    const results = await hybridSearch(tc.query, 8);
     const retrievedDocIds = results.map((r) => r.docId);
 
     for (const k of K_VALUES) {

@@ -35,7 +35,7 @@ src/lib/generate.ts      Claude (claude-sonnet-4-5) generates the final answer, 
                           sources, and ask a clarifying question when the user's occupation/board
                           is ambiguous rather than guess
 eval/testset.json        16 real eligibility questions with expected source documents
-scripts/eval.ts          hit-rate@k over the test set — currently 93.8% @3, 100% @5
+scripts/eval.ts          hit-rate@k over the test set — currently 75% @1, 93.8% @3, 100% @5/@8
 src/app/api/chat/route.ts   retrieval + generation, with a graceful fallback that still
                              surfaces raw retrieved context (with source-type badges) if
                              generation fails (e.g. no API key)
@@ -48,7 +48,28 @@ src/lib/eligibility.ts   deterministic rule-based eligibility matcher — no LLM
 scripts/test-eligibility.ts   regression tests for the rule engine, including the exact
                                driver/family-pension bug caught during re-sourcing
 src/app/api/eligibility/route.ts + "Quick eligibility check" tab in the UI
+scripts/test-search-tamil.ts   manual cross-lingual retrieval check (npm run eval-tamil)
 ```
+
+## Tamil support
+
+Embeddings run on `paraphrase-multilingual-MiniLM-L12-v2` instead of the English-only baseline,
+so Tamil queries retrieve against the (still English-only) corpus via cross-lingual embedding
+alignment — no translation step, no separate Tamil corpus. The generation prompt instructs
+Claude to answer in whichever language the user asked in.
+
+**Measured, not assumed:** cross-lingual alignment for this model is real but weaker than
+English-English retrieval (per-chunk scores ~0.1–0.26 vs ~0.3–0.6 for English). Four manual
+Tamil test queries (`npm run eval-tamil`) initially found one hard miss — a Tamil question
+about accident compensation didn't surface the benefit table at all within top-8, because
+table-heavy numeric content embeds poorly across languages even with a multilingual model. Fixed
+by adding a short inline Tamil glossary line to each benefit-schedule section (not a full
+translation — just the key terms a query is likely to use) — this moved the target chunk to
+rank #1 for that query, and as a side effect **improved English hit-rate@1 too** (10/16 → 12/16),
+since the glossary line added clearer context to what had been a bare table under a terse
+heading. The context window passed to generation was also widened from top-5 to top-8 chunks as
+a safety margin against the remaining ranking weakness, at negligible cost given the corpus is
+only 31 chunks.
 
 ## Key engineering decisions (and why)
 
