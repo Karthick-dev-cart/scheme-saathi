@@ -1,0 +1,92 @@
+{
+  "commonEligibility": {
+    "minAge": 18,
+    "maxAge": 60,
+    "excludesEpfEsi": true,
+    "residency": "Tamil Nadu"
+  },
+  "commonBenefits": [
+    { "name": "Accidental death (anywhere)", "amount": "₹1,00,000" },
+    { "name": "Accidental disability (based on extent)", "amount": "up to ₹1,00,000" },
+    { "name": "Natural death assistance", "amount": "₹20,000" },
+    { "name": "Funeral expenses assistance", "amount": "₹5,000" },
+    { "name": "Marriage assistance — male worker", "amount": "₹3,000" },
+    { "name": "Marriage assistance — female worker", "amount": "₹5,000" },
+    { "name": "Maternity assistance — miscarriage", "amount": "₹6,000" },
+    { "name": "Maternity assistance — medical termination of pregnancy", "amount": "₹3,000" },
+    { "name": "Monthly pension (age 60+)", "amount": "₹1,000/month" },
+    { "name": "Spectacles reimbursement", "amount": "up to ₹500" }
+  ],
+  "sourceType": "official",
+  "sourceUrl": "https://labour.tn.gov.in/pdf/citizens.pdf",
+  "sourceName": "Tamil Nadu Labour Department — Citizen's Charter",
+  "boards": [
+    {
+      "id": "construction",
+      "name": "Tamil Nadu Construction Workers Welfare Board",
+      "occupationKeywords": ["construction", "mason", "carpenter", "electrician", "welder", "painter", "plumber", "bar bending", "scaffolding"],
+      "extraBenefits": [
+        { "name": "Accidental death during employment at a work site", "amount": "₹5,00,000", "overrides": "Accidental death (anywhere)" },
+        { "name": "Family pension (to surviving family after worker's death)", "amount": "₹500/month" }
+      ],
+      "docId": "construction-workers-board-benefits"
+    },
+    {
+      "id": "drivers",
+      "name": "Tamil Nadu Unorganised Drivers Welfare Board",
+      "occupationKeywords": ["driver", "auto driver", "auto rickshaw", "taxi driver", "taxi", "lorry driver", "cab driver"],
+      "extraBenefits": [],
+      "excludedBenefits": ["Family pension (to surviving family after worker's death)"],
+      "docId": "drivers-welfare-pension"
+    },
+    {
+      "id": "manual",
+      "name": "Tamil Nadu Manual Workers Welfare Board",
+      "occupationKeywords": ["manual labour", "manual worker", "general labour", "coolie", "load man"],
+      "extraBenefits": [],
+      "docId": "manual-workers-board-benefits"
+    },
+    {
+      "id": "domestic",
+      "name": "Tamil Nadu Domestic Workers Welfare Board",
+      "occupationKeywords": ["domestic worker", "maid", "house help", "housemaid", "cook (domestic)"],
+      "extraBenefits": [],
+      "docId": "tnuwwb-overview"
+    },
+    {
+      "id": "washermen",
+      "name": "Tamil Nadu Washermen Welfare Board",
+      "occupationKeywords": ["washerman", "washerwoman", "dhobi", "laundry"],
+      "extraBenefits": [],
+      "docId": "tnuwwb-overview"
+    },
+    {
+      "id": "hairdressers",
+      "name": "Tamil Nadu Hair Dressers Welfare Board",
+      "occupationKeywords": ["barber", "hairdresser", "hair stylist", "salon worker"],
+      "extraBenefits": [],
+      "docId": "tnuwwb-overview"
+    },
+    {
+      "id": "tailoring",
+      "name": "Tamil Nadu Tailoring Workers Welfare Board",
+      "occupationKeywords": ["tailor", "tailoring", "garment worker"],
+      "extraBenefits": [],
+      "docId": "tnuwwb-overview"
+    },
+    {
+      "id": "street-vending",
+      "name": "Tamil Nadu Street Vending and Shops and Establishments Workers Welfare Board",
+      "occupationKeywords": ["street vendor", "hawker", "pushcart", "shop worker", "shop assistant"],
+      "extraBenefits": [],
+      "docId": "tnuwwb-overview"
+    },
+    {
+      "id": "cooking-food",
+      "name": "Tamil Nadu Cooking Food Workers Welfare Board",
+      "occupationKeywords": ["cook", "caterer", "kitchen worker", "food stall"],
+      "extraBenefits": [],
+      "docId": "tnuwwb-overview"
+    }
+  ]
+}

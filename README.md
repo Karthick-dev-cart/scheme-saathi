@@ -41,6 +41,13 @@ src/app/api/chat/route.ts   retrieval + generation, with a graceful fallback tha
                              generation fails (e.g. no API key)
 src/app/page.tsx         mobile-first chat UI with inline source citations, color-coded by
                           source type (green=official, amber=news, gray=aggregator/mixed)
+data/eligibility-rules.json   structured eligibility schema: common age/EPF-ESI rules, common
+                               benefit schedule, and per-board occupation keywords + exceptions
+src/lib/eligibility.ts   deterministic rule-based eligibility matcher — no LLM call, same
+                          answer every time for the same inputs
+scripts/test-eligibility.ts   regression tests for the rule engine, including the exact
+                               driver/family-pension bug caught during re-sourcing
+src/app/api/eligibility/route.ts + "Quick eligibility check" tab in the UI
 ```
 
 ## Key engineering decisions (and why)
@@ -67,6 +74,11 @@ src/app/page.tsx         mobile-first chat UI with inline source citations, colo
 - **Citations are structural, not cosmetic.** The generation prompt requires every factual claim
   to carry a `[n]` marker tied to a specific retrieved chunk, source URL, and source type; the UI
   renders these as clickable, color-coded source links.
+- **Eligibility is rules, not RAG-vibes.** Age limits, EPF/ESI exclusion, and board-specific
+  benefit amounts are deterministic facts, not something an LLM should be re-deriving from
+  retrieved text on every call. `src/lib/eligibility.ts` encodes them as a rule engine with its
+  own regression tests — fully functional and testable with zero API key, and more
+  correct/auditable than asking an LLM to read a benefits table and do the matching itself.
 
 ## A real correction this process caught
 
@@ -83,9 +95,10 @@ they qualify for a benefit they don't. This is now corrected in `drivers-welfare
 
 ```bash
 npm install
-npm run build-index   # builds data/index.json from data/schemes/*.md (one-time, local only)
-npm run eval           # retrieval-only eval, no API key needed
-cp .env.local.example .env.local   # add your ANTHROPIC_API_KEY to enable generation
+npm run build-index        # builds data/index.json from data/schemes/*.md (one-time, local only)
+npm run eval                # retrieval-only eval, no API key needed
+npm run test-eligibility    # rule-engine regression tests, no API key needed
+cp .env.local.example .env.local   # add your ANTHROPIC_API_KEY to enable chat generation
 npm run dev
 ```
 
