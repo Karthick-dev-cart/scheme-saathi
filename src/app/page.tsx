@@ -1,69 +1,215 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useRef, useEffect } from "react";
+
+interface Citation {
+  marker: string;
+  chunkId: string;
+  sourceUrl: string;
+  sourceName: string;
+}
+
+interface RetrievedChunk {
+  docTitle: string;
+  heading: string;
+  text: string;
+  sourceUrl: string;
+  sourceName: string;
+}
+
+interface Message {
+  role: "user" | "assistant";
+  text: string;
+  citations?: Citation[];
+  retrievedOnly?: RetrievedChunk[];
+  error?: string;
+}
+
+const SUGGESTIONS = [
+  "I'm an auto driver in Chennai, what pension can I get after 60?",
+  "How much is marriage assistance for construction workers?",
+  "What documents do I need to register as an unorganised worker?",
+];
 
 export default function Home() {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, loading]);
+
+  async function send(question: string) {
+    if (!question.trim() || loading) return;
+    setMessages((m) => [...m, { role: "user", text: question }]);
+    setInput("");
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setMessages((m) => [
+          ...m,
+          {
+            role: "assistant",
+            text: "",
+            error: data.error,
+            retrievedOnly: data.retrievedOnly,
+          },
+        ]);
+      } else {
+        setMessages((m) => [
+          ...m,
+          { role: "assistant", text: data.text, citations: data.citations },
+        ]);
+      }
+    } catch {
+      setMessages((m) => [
+        ...m,
+        { role: "assistant", text: "", error: "Network error — please try again." },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="flex flex-col flex-1 min-h-screen bg-zinc-50 dark:bg-zinc-950">
+      <header className="border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-4 py-3 sm:px-6">
+        <h1 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+          Scheme Saathi
+        </h1>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          Tamil Nadu welfare scheme eligibility — grounded answers with sources
+        </p>
+      </header>
+
+      <main className="flex-1 overflow-y-auto px-4 py-4 sm:px-6">
+        <div className="mx-auto max-w-2xl flex flex-col gap-4">
+          {messages.length === 0 && (
+            <div className="mt-8 flex flex-col gap-3">
+              <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                Ask about Tamil Nadu unorganised-worker welfare schemes, e.g.:
+              </p>
+              {SUGGESTIONS.map((s) => (
+                <button
+                  key={s}
+                  onClick={() => send(s)}
+                  className="text-left rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-4 py-3 text-sm text-zinc-700 dark:text-zinc-200 hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors"
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {messages.map((m, i) => (
+            <div
+              key={i}
+              className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+              <div
+                className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap ${
+                  m.role === "user"
+                    ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
+                    : "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-100"
+                }`}
+              >
+                {m.error ? (
+                  <div className="flex flex-col gap-2">
+                    <p className="text-amber-600 dark:text-amber-400">{m.error}</p>
+                    {m.retrievedOnly && m.retrievedOnly.length > 0 && (
+                      <div className="flex flex-col gap-2 border-t border-zinc-200 dark:border-zinc-800 pt-2 mt-1">
+                        <p className="text-xs text-zinc-500">
+                          Retrieval still ran — here&apos;s the raw matched context:
+                        </p>
+                        {m.retrievedOnly.map((c, j) => (
+                          <div key={j} className="text-xs text-zinc-600 dark:text-zinc-400">
+                            <span className="font-medium">
+                              {c.docTitle} — {c.heading}
+                            </span>{" "}
+                            (
+                            <a
+                              href={c.sourceUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="underline"
+                            >
+                              {c.sourceName}
+                            </a>
+                            )
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <>
+                    <p>{m.text}</p>
+                    {m.citations && m.citations.length > 0 && (
+                      <div className="mt-3 flex flex-col gap-1 border-t border-zinc-200 dark:border-zinc-800 pt-2">
+                        <p className="text-xs font-medium text-zinc-500">Sources</p>
+                        {m.citations.map((c) => (
+                          <a
+                            key={c.marker}
+                            href={c.sourceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 underline"
+                          >
+                            {c.marker} {c.sourceName}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+            </div>
+          ))}
+
+          {loading && (
+            <div className="flex justify-start">
+              <div className="rounded-2xl px-4 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+                <span className="text-sm text-zinc-400">Thinking…</span>
+              </div>
+            </div>
+          )}
+          <div ref={bottomRef} />
         </div>
       </main>
+
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          send(input);
+        }}
+        className="border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-4 py-3 sm:px-6"
+      >
+        <div className="mx-auto max-w-2xl flex gap-2">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Describe your situation…"
+            className="flex-1 rounded-full border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 px-4 py-2 text-sm text-zinc-900 dark:text-zinc-100 outline-none focus:border-zinc-500"
+          />
+          <button
+            type="submit"
+            disabled={loading || !input.trim()}
+            className="rounded-full bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-900 px-5 py-2 text-sm font-medium disabled:opacity-40"
+          >
+            Ask
+          </button>
+        </div>
+      </form>
     </div>
   );
 }
