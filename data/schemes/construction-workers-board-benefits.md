@@ -1,68 +1,64 @@
 ---
 id: construction-workers-board-benefits
-title: Construction Workers Welfare Board — Benefits
-board: Construction Workers Welfare Board (TNUWWB)
-source_url: https://thanjavur.nic.in/social-security-scheme/
-source_name: Thanjavur District Assistant Commissioner of Labour (Social Security Scheme)
+title: Tamil Nadu Construction Workers Welfare Board — board-specific details
+board: Construction Workers Welfare Board (one of 17 TNUWWB boards)
+source_type: official
+source_url: https://labour.tn.gov.in/pdf/citizens.pdf
+source_name: Tamil Nadu Labour Department — Citizen's Charter (Commissionerate of Labour)
 last_verified: 2026-10-31
 ---
 
-# Construction Workers Welfare Board — Benefits
+# Tamil Nadu Construction Workers Welfare Board
 
-Covers 53–54 construction-related trades: masons, carpenters, electricians, welders, painters,
-plumbers, and related building-trade workers.
+Established in 1994 for workers in **53 categories** of construction-related trades (masons,
+carpenters, electricians, welders, painters, plumbers, etc.). Registered construction workers
+receive the full `common-benefit-schedule.md` **plus** these board-specific additions:
 
-## Eligibility
+## Benefits that differ from the common schedule
 
-- Age **18–60**
-- Engaged in one of the listed construction trades
-- Employment verification required from an employer, contractor, government body, registered
-  trade union, or Village Administrative Officer (VAO)
+| Benefit | Construction board amount | Other boards |
+|---|---|---|
+| Accidental death at a work site, during employment | ₹5,00,000 | ₹1,00,000 (anywhere) |
+| Family pension (paid to family after worker's death) | ₹500/month | not offered |
 
-## Benefit amounts
+All other benefits (marriage, maternity, natural death, funeral, education, pension, spectacles)
+follow the common schedule — see `common-benefit-schedule.md`. Earlier aggregator sources
+quoted different figures (e.g. ₹20,000 marriage assistance, ₹18,000 maternity, ₹4,00,000
+housing) that are **not corroborated by the official Labour Department citizen's charter** and
+have been dropped from this corpus pending confirmation from an official source.
 
-| Benefit | Amount |
-|---|---|
-| Marriage assistance (up to twice per family) | ₹20,000 |
-| Maternity assistance (first two children) | ₹18,000 |
-| Accidental death at workplace | ₹5,00,000 |
-| Monthly pension (age 60+) | ₹1,000 / month |
-| Housing scheme | ₹4,00,000 |
-| Education assistance (12th pass) | ₹3,000 |
+## Additional welfare programmes (construction board only, with government order references)
 
-Note: these amounts are **materially higher** than the Manual Workers board (see
-`manual-workers-board-benefits.md`) for similar-sounding benefits (e.g. marriage, maternity,
-accidental death). A worker should check which specific board they are registered under before
-assuming an amount — **auto/taxi drivers fall under the Manual Workers board, not this one.**
+- **Inter-state migrant worker registration**: migrant construction workers can register with
+  this board (G.O. (Ms) No.153 & 154, Labour and Employment (I2) Dept, dated 08.12.2014);
+  21,764 inter-state migrants registered as of 31.05.2019.
+- **Mobile health clinics** at work sites (G.O. (Ms) No.150, dated 08.12.2014) — 80,934 workers
+  screened through 1,874 camps as of 31.05.2019.
+- **Anganwadi facilities** for children at construction sites (G.O. (Ms) No.158, dated
+  11.12.2014), in convergence with ICDS.
+- **School transport assistance**: ₹300/month per child for 10 months, for children of
+  construction workers to attend Sarva Shiksha Abhiyan schools (G.O. (Ms) No.152, dated
+  08.12.2014).
+- **Dormitories** for workers at Chennai, Salem, Madurai, Coimbatore and Trichy (G.O.(Ms)No.156,
+  dated 11.12.2014); rental ₹20/worker/day.
 
-## Documents required
+## Documents typically required
 
-**General (all claims):**
-- Identity certificate (driving licence, voter ID, school certificate, or medical practitioner
+- Identity proof (driving licence, voter ID, school certificate, or medical practitioner
   certificate)
-- Bank account passbook (first page)
+- Bank account passbook (first page) — benefits are paid directly to this account, no cash payout
 - Family card / ration card
 - Aadhaar card
+- Occupation/employment verification from an employer, contractor, registered trade union, or
+  Village Administrative Officer (VAO)
 
-**Scheme-specific:**
-- Marriage: invitation, proof, age certification (21+ for men, 18+ for women)
-- Maternity: birth certificate; doctor's certificate if complications occurred
-- Education: headmaster's certificate, mark sheets, bonafide certificate
-- Accidental death: death certificate, FIR, post-mortem report, succession certificate
+## Registration and renewal
 
-## Registration / renewal
-
-1. Register online at the official board portal with a valid mobile number, verified via OTP.
-2. Submit required documents digitally.
-3. Receive acknowledgment via SMS.
-4. On approval, receive a Permanent Registration Number.
-5. **Renew every 5 years** until age 60, applying one month before expiry.
-
-No fee is charged for registration, renewal, petitions, or submissions.
+Register online with a valid mobile number (OTP verification) or at the district Assistant
+Commissioner of Labour (Social Security Scheme) office. Renewal is required periodically until
+age 60. No fee is charged for registration, renewal, petitions, or submissions.
 
 ## Contact
 
-Office of Assistant Commissioner of Labour (Social Security Scheme), Integrated Labour Office
-Building, New Collectorate Campus, Thanjavur–Trichy Road, Thanjavur 613010. Phone: 04362-264549.
-(Equivalent offices exist in every Tamil Nadu district — e.g. Ariyalur: see
-https://ariyalur.nic.in/labour-welfare-sss/)
+Tamil Nadu Construction Workers Welfare Board, No. 8, Valluvarkottam High Road, Nungambakkam,
+Chennai-34. Phone: 044-28216527. Email: tncwwbhead@gmail.com.

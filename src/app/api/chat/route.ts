@@ -23,6 +23,7 @@ export async function POST(req: NextRequest) {
           docTitle: c.docTitle,
           heading: c.heading,
           text: c.text,
+          sourceType: c.sourceType,
           sourceUrl: c.sourceUrl,
           sourceName: c.sourceName,
         })),

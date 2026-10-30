@@ -1,58 +1,60 @@
 [
   {
     "query": "I am an auto driver in Chennai, what pension can I get after I turn 60",
-    "expectedDocIds": ["drivers-welfare-pension", "manual-workers-board-benefits"],
-    "notes": "driver-specific pension amount"
+    "expectedDocIds": ["drivers-welfare-pension", "common-benefit-schedule"],
+    "notes": "driver-specific board + the actual pension amount lives in the common schedule"
   },
   {
     "query": "how much does marriage assistance pay for construction workers",
-    "expectedDocIds": ["construction-workers-board-benefits"]
+    "expectedDocIds": ["common-benefit-schedule"],
+    "notes": "marriage assistance follows the common schedule, not a construction-specific amount"
   },
   {
     "query": "what documents do I need to register as an unorganised worker",
-    "expectedDocIds": ["tnuwwb-overview", "manual-workers-board-benefits", "construction-workers-board-benefits"]
-  },
-  {
-    "query": "my husband died in a road accident, what compensation can I claim",
-    "expectedDocIds": ["manual-workers-board-benefits", "construction-workers-board-benefits", "drivers-welfare-pension"],
-    "notes": "ambiguous — occupation not stated, either board's accidental death table is a valid hit"
-  },
-  {
-    "query": "is there a yearly fee to register with the welfare board",
-    "expectedDocIds": ["tnuwwb-overview", "manual-workers-board-benefits"]
-  },
-  {
-    "query": "I work as a domestic maid, am I eligible for any welfare scheme",
-    "expectedDocIds": ["manual-workers-board-benefits", "tnuwwb-overview"]
-  },
-  {
-    "query": "what is the minimum and maximum age to register",
-    "expectedDocIds": ["tnuwwb-overview", "manual-workers-board-benefits", "construction-workers-board-benefits"]
-  },
-  {
-    "query": "I already have ESI through my employer, can I still register",
-    "expectedDocIds": ["tnuwwb-overview", "manual-workers-board-benefits"],
-    "notes": "tests negative eligibility criterion (ESI/EPFO exclusion)"
-  },
-  {
-    "query": "how much maternity benefit will I get for my second child",
-    "expectedDocIds": ["manual-workers-board-benefits", "construction-workers-board-benefits"]
-  },
-  {
-    "query": "what is the housing scheme amount for construction workers",
-    "expectedDocIds": ["construction-workers-board-benefits"]
-  },
-  {
-    "query": "how often do I need to renew my registration",
     "expectedDocIds": ["tnuwwb-overview", "construction-workers-board-benefits"]
   },
   {
-    "query": "my son just passed 12th standard, is there any education assistance",
-    "expectedDocIds": ["manual-workers-board-benefits", "construction-workers-board-benefits"]
+    "query": "my husband died in a road accident, what compensation can I claim",
+    "expectedDocIds": ["common-benefit-schedule", "construction-workers-board-benefits"],
+    "notes": "ambiguous — occupation not stated; common schedule has the ₹1L general figure, construction doc has the ₹5L work-site exception"
   },
   {
-    "query": "what documents are needed to claim funeral assistance",
-    "expectedDocIds": ["manual-workers-board-benefits"]
+    "query": "is there a yearly fee to register with the welfare board",
+    "expectedDocIds": ["tnuwwb-overview", "construction-workers-board-benefits", "manual-workers-board-benefits"]
+  },
+  {
+    "query": "I work as a domestic maid, am I eligible for any welfare scheme",
+    "expectedDocIds": ["tnuwwb-overview"]
+  },
+  {
+    "query": "what is the minimum and maximum age to register",
+    "expectedDocIds": ["tnuwwb-overview", "drivers-welfare-pension"]
+  },
+  {
+    "query": "I already have ESI through my employer, can I still register",
+    "expectedDocIds": ["tnuwwb-overview"],
+    "notes": "tests negative eligibility criterion (ESI/EPFO exclusion) and organised vs unorganised distinction"
+  },
+  {
+    "query": "how much maternity benefit will I get for a miscarriage",
+    "expectedDocIds": ["common-benefit-schedule"]
+  },
+  {
+    "query": "does my family get a monthly pension if I die after registering as a driver",
+    "expectedDocIds": ["drivers-welfare-pension", "common-benefit-schedule"],
+    "notes": "tests that family pension is correctly flagged as construction-only, not available to drivers"
+  },
+  {
+    "query": "does my family get a monthly pension if I die as a registered construction worker",
+    "expectedDocIds": ["construction-workers-board-benefits", "common-benefit-schedule"]
+  },
+  {
+    "query": "my son just passed 12th standard, is there any education assistance",
+    "expectedDocIds": ["common-benefit-schedule"]
+  },
+  {
+    "query": "how much funeral expense assistance will my family get",
+    "expectedDocIds": ["common-benefit-schedule"]
   },
   {
     "query": "is the auto driver pension really going to increase to 3000 rupees",
@@ -60,11 +62,13 @@
     "notes": "tests that unenacted/proposed changes aren't presented as confirmed"
   },
   {
-    "query": "where can I physically go to register, is there an online option",
-    "expectedDocIds": ["tnuwwb-overview", "construction-workers-board-benefits"]
+    "query": "which welfare board do auto and taxi drivers actually register under",
+    "expectedDocIds": ["drivers-welfare-pension", "tnuwwb-overview"],
+    "notes": "tests the corrected fact that drivers have their own board, not Manual Workers"
   },
   {
-    "query": "if I die after registering, does my family get any monthly support",
-    "expectedDocIds": ["manual-workers-board-benefits", "drivers-welfare-pension"]
+    "query": "I work in a factory with PF deducted, which welfare board applies to me",
+    "expectedDocIds": ["tnuwwb-overview"],
+    "notes": "tests the organised-sector vs unorganised-sector board distinction"
   }
 ]

@@ -7,6 +7,7 @@ export interface IndexedChunk {
   docId: string;
   docTitle: string;
   board: string;
+  sourceType: string;
   sourceUrl: string;
   sourceName: string;
   heading: string;

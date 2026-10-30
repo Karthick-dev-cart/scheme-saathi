@@ -1,67 +1,49 @@
 ---
 id: manual-workers-board-benefits
-title: Manual Workers Welfare Board — Benefits (covers auto/taxi/lorry drivers)
-board: Manual Workers Welfare Board (TNUWWB)
-source_url: https://schemesinindia.in/schemes/tamil-nadu/tn-unorganised-workers-social-security-board
-source_name: TN Unorganised Workers Social Security Board scheme summary
+title: Tamil Nadu Manual Workers Welfare Board — board-specific details
+board: Manual Workers Welfare Board (one of 17 TNUWWB boards)
+source_type: official
+source_url: https://labour.tn.gov.in/pdf/citizens.pdf
+source_name: Tamil Nadu Labour Department — Citizen's Charter (Commissionerate of Labour)
 last_verified: 2026-10-31
 ---
 
-# Manual Workers Welfare Board — Benefits
+# Tamil Nadu Manual Workers Welfare Board
 
-This board covers roughly 61 occupational categories, **explicitly including auto/taxi drivers**,
-domestic workers, street vendors, barbers, washermen, sanitation workers, handloom and small
-manufacturing trades.
+Constituted on 17.03.1999 under the Tamil Nadu Manual Workers (Regulation of Employment and
+Conditions of Work) Act, 1982. It is one of the two founding unorganised-worker boards (alongside
+Construction Workers), with the Manual Workers Social Security Welfare Scheme first framed in
+2001 and replaced in 2006.
 
-## Eligibility
+## Which occupations fall under this specific board
 
-- Tamil Nadu resident, age **18–60**
-- Working in one of the covered informal-sector occupations (auto/taxi drivers are explicitly
-  listed)
-- Monthly income **below ₹15,000**
-- **Not covered under ESI or EPFO**
+The source citizen's charter does **not** give a precise, itemised occupation list for the
+Manual Workers board specifically — it describes 15 *other* boards as separately covering named
+trades (drivers, washermen, hairdressers, tailoring, handicraft, palm tree workers, handloom,
+footwear/leather/tannery, artists, goldsmiths, pottery, domestic workers, powerloom, street
+vending, and cooking food workers). Based on that structure, the Manual Workers board most likely
+functions as a broader category for manual/informal workers **not** covered by one of those 15
+specifically-named trade boards or by Construction. **This is an inference, not a directly
+confirmed fact** — a worker unsure which of the 17 boards applies to them should confirm with
+their district Assistant Commissioner of Labour (SSS) office rather than assume.
 
-## Benefit amounts
+## Benefits
 
-| Benefit | Amount |
-|---|---|
-| Accidental death | ₹2,00,000 |
-| Permanent disability | ₹1,00,000 |
-| Maternity assistance (up to 2 deliveries) | ₹6,000 per delivery |
-| Daughter's marriage assistance | ₹3,000 |
-| Funeral assistance | ₹3,000 |
-| Children's education assistance | ₹500 – ₹3,000 per year, depending on school/college class |
-| Monthly pension (age 60+, registered worker) | ₹1,000 / month |
-| Family pension (if registered worker passes away) | ₹500 / month to surviving family |
+No board-specific additions beyond the common schedule are documented for this board in the
+source citizen's charter. Registered Manual Workers board members receive the full
+`common-benefit-schedule.md` (accident relief, natural/accidental death, funeral, marriage,
+maternity, education, pension, spectacles) — **note that family pension is a Construction
+Workers board-only benefit and does not apply here.**
 
-**Annual registration fee:** ₹30
+## Registration
 
-## Documents required at enrolment
+Register at the district Assistant Commissioner of Labour (Social Security Scheme) office, or
+online with mobile OTP verification where available. No fee is charged for registration,
+renewal, petitions, or submissions. Identity, address, and occupation-verification documents are
+required — see `tnuwwb-overview.md` for the common document list.
 
-- Aadhaar card
-- Tamil Nadu address proof
-- Self-declaration of occupation
-- Income affidavit (to prove monthly income below ₹15,000)
-- Aadhaar-linked bank passbook
+## Contact
 
-## How to apply
-
-1. Visit the Labour Department office or nearest e-Sevai centre.
-2. Complete the unorganised worker registration form for the Manual Workers board.
-3. Pay the ₹30 annual registration fee.
-4. Receive the registration ID card.
-5. To claim a specific benefit later (e.g. accident compensation, marriage assistance), submit the
-   scheme-specific supporting documents (see below) at the Labour Office.
-
-## Scheme-specific documents for claims
-
-- **Marriage assistance:** wedding invitation, proof of marriage, age certification (groom 21+,
-  bride 18+)
-- **Maternity assistance:** birth certificate; doctor's certificate if there were complications
-- **Education assistance:** certificate from school headmaster, mark sheets, bonafide certificate
-- **Accidental death / disability:** death certificate, FIR copy, post-mortem report, succession
-  certificate (for death claims)
-
-## Official portal
-
-www.labour.tn.gov.in and www.tnuwwb.tn.gov.in
+Secretary, Tamil Nadu Manual Workers Social Security Welfare Board and 15 other Welfare Boards,
+Indian Officers Association Building, No.69, T.V.K Road, Royapettah, Chennai–14.
+Phone: 044-28110150. Email: manualboard@gmail.com.

@@ -22,6 +22,11 @@ Rules:
 eligibility criteria, benefit amounts, or deadlines.
 - Every factual claim (an amount, an age limit, a document requirement) must be followed by a \
 citation marker like [1], [2] referring to the numbered context chunks.
+- Each context chunk is tagged with a source type: "official" (government citizen's charter or \
+portal), "news" (press reporting), or "mixed"/"aggregator" (third-party scheme-listing sites). \
+Prefer official chunks for any factual claim. If only a non-official chunk supports a claim, say \
+so explicitly ("according to news reporting, not yet officially confirmed...") rather than \
+stating it with the same confidence as an official figure.
 - If the user's situation is ambiguous (e.g. their occupation or which welfare board applies \
 isn't clear), ask a short clarifying question instead of guessing.
 - If the retrieved context does not actually answer the question, say so plainly instead of \
@@ -33,7 +38,13 @@ terminology.`;
 
 export interface GeneratedAnswer {
   text: string;
-  citations: { marker: string; chunkId: string; sourceUrl: string; sourceName: string }[];
+  citations: {
+    marker: string;
+    chunkId: string;
+    sourceType: string;
+    sourceUrl: string;
+    sourceName: string;
+  }[];
 }
 
 export async function generateAnswer(
@@ -43,7 +54,7 @@ export async function generateAnswer(
   const contextBlock = contextChunks
     .map(
       (c, i) =>
-        `[${i + 1}] (source: ${c.sourceName}, ${c.sourceUrl})\n${c.docTitle} — ${c.heading}\n${c.text}`
+        `[${i + 1}] (source_type: ${c.sourceType}; source: ${c.sourceName}, ${c.sourceUrl})\n${c.docTitle} — ${c.heading}\n${c.text}`
     )
     .join("\n\n---\n\n");
 
@@ -68,6 +79,7 @@ export async function generateAnswer(
   const citations = contextChunks.map((c, i) => ({
     marker: `[${i + 1}]`,
     chunkId: c.chunkId,
+    sourceType: c.sourceType,
     sourceUrl: c.sourceUrl,
     sourceName: c.sourceName,
   }));

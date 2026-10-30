@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from "react";
 interface Citation {
   marker: string;
   chunkId: string;
+  sourceType: string;
   sourceUrl: string;
   sourceName: string;
 }
@@ -13,8 +14,19 @@ interface RetrievedChunk {
   docTitle: string;
   heading: string;
   text: string;
+  sourceType: string;
   sourceUrl: string;
   sourceName: string;
+}
+
+function sourceTypeBadgeClass(sourceType: string): string {
+  if (sourceType === "official") {
+    return "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300";
+  }
+  if (sourceType === "news") {
+    return "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300";
+  }
+  return "bg-zinc-200 text-zinc-600 dark:bg-zinc-700 dark:text-zinc-300";
 }
 
 interface Message {
@@ -133,6 +145,11 @@ export default function Home() {
                         </p>
                         {m.retrievedOnly.map((c, j) => (
                           <div key={j} className="text-xs text-zinc-600 dark:text-zinc-400">
+                            <span
+                              className={`mr-1 rounded px-1 py-0.5 text-[10px] font-medium uppercase ${sourceTypeBadgeClass(c.sourceType)}`}
+                            >
+                              {c.sourceType}
+                            </span>
                             <span className="font-medium">
                               {c.docTitle} — {c.heading}
                             </span>{" "}
@@ -163,8 +180,13 @@ export default function Home() {
                             href={c.sourceUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-xs text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 underline"
+                            className="flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 underline"
                           >
+                            <span
+                              className={`rounded px-1 py-0.5 text-[10px] font-medium uppercase no-underline ${sourceTypeBadgeClass(c.sourceType)}`}
+                            >
+                              {c.sourceType}
+                            </span>
                             {c.marker} {c.sourceName}
                           </a>
                         ))}

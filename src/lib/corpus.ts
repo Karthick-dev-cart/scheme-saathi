@@ -8,6 +8,7 @@ export interface SchemeDoc {
   id: string;
   title: string;
   board: string;
+  sourceType: string;
   sourceUrl: string;
   sourceName: string;
   lastVerified: string;
@@ -19,6 +20,7 @@ export interface Chunk {
   docId: string;
   docTitle: string;
   board: string;
+  sourceType: string;
   sourceUrl: string;
   sourceName: string;
   heading: string;
@@ -34,6 +36,7 @@ export function loadDocs(): SchemeDoc[] {
       id: data.id,
       title: data.title,
       board: data.board,
+      sourceType: data.source_type ?? "unknown",
       sourceUrl: data.source_url,
       sourceName: data.source_name,
       lastVerified: data.last_verified,
@@ -58,6 +61,7 @@ export function chunkDocs(docs: SchemeDoc[]): Chunk[] {
         docId: doc.id,
         docTitle: doc.title,
         board: doc.board,
+        sourceType: doc.sourceType,
         sourceUrl: doc.sourceUrl,
         sourceName: doc.sourceName,
         heading,
