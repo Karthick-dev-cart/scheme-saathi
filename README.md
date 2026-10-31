@@ -123,6 +123,21 @@ cp .env.local.example .env.local   # add your ANTHROPIC_API_KEY to enable chat g
 npm run dev
 ```
 
+## Deployment
+
+Not deployed yet. Checked Vercel first since it's the default choice for Next.js, but this
+architecture doesn't fit serverless well: the English embedding model is 87MB and the
+multilingual one is **449MB** (828MB with tokenizer files), both loaded at request time —
+Vercel's serverless function size limit (~250MB) and ephemeral filesystem make this unreliable
+at best, likely broken at worst (repeated multi-hundred-MB downloads on cold starts). This is a
+direct consequence of the "local embeddings, no API key" design decision — a deliberate
+trade-off that has a real deployment cost, not a surprise discovered via a failed deploy.
+
+The correct fit is a host with a persistent disk and a long-running Node process (Render,
+Railway, Fly.io) where the model downloads once and stays cached, same as local dev. Next step
+when ready: deploy there, or swap to a hosted embeddings API (Voyage/OpenAI) specifically for
+the deployed instance if serverless is a hard requirement.
+
 ## Known limitations / next steps
 
 - Corpus covers 5 documents across 3 of TN's 17 welfare boards plus the common schedule — real
